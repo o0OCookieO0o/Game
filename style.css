@@ -417,7 +417,7 @@ h1 span {
   flex-shrink: 0;
 }
 
-/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (увеличен отступ сверху) ---------- */
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (центрирование с отступами 12% сверху и снизу) ---------- */
 @media (max-width: 650px) {
   body {
     padding: 4px;
@@ -431,12 +431,13 @@ h1 span {
     height: 100vh;
     width: 100%;
     max-width: 100%;
-    justify-content: flex-start;
+    justify-content: center;      /* центрируем группу по вертикали */
     align-items: center;
-    padding: 0;
+    padding: 12vh 0;             /* отступы сверху и снизу по 12% высоты экрана */
     box-sizing: border-box;
   }
 
+  /* Счёт — теперь без внешних отступов, просто часть колонки */
   .side-score {
     flex-direction: row;
     gap: 6px;
@@ -451,8 +452,7 @@ h1 span {
     backdrop-filter: blur(4px);
     flex-shrink: 0;
     flex-grow: 0;
-    margin-top: 6vh;            /* отступ сверху для счёта */
-    margin-bottom: 1vh;
+    margin: 0;                  /* убираем все внешние отступы */
   }
   .side-score .score-number {
     font-size: 1.1rem;
@@ -468,7 +468,7 @@ h1 span {
     display: none;
   }
 
-  /* Игровое окошко — увеличен отступ сверху до 21vh */
+  /* Игровое окошко — тоже без внешних отступов, центрируется внутри контейнера */
   .game-container {
     max-width: 400px;
     width: 100%;
@@ -476,8 +476,7 @@ h1 span {
     border-radius: 24px;
     flex-shrink: 0;
     flex-grow: 0;
-    margin-top: 21vh;           /* увеличенный отступ сверху (было 1vh) */
-    margin-bottom: 20vh;        /* нижний отступ оставлен */
+    margin: 0;                  /* убираем margin */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -572,15 +571,10 @@ h1 span {
   }
 }
 
-/* Совсем маленькие экраны — пропорциональное уменьшение отступов */
+/* Для очень низких экранов уменьшаем отступы до 8% */
 @media (max-height: 600px) and (max-width: 650px) {
-  .side-score {
-    margin-top: 3vh;
-    margin-bottom: 0.5vh;
-  }
-  .game-container {
-    margin-top: 14vh;           /* уменьшенный верхний отступ для маленьких экранов */
-    margin-bottom: 12vh;
+  .game-wrapper {
+    padding: 8vh 0;
   }
   .board {
     max-height: 40vh;
