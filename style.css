@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 8px;
   background-image: url('photo/1.jpg');
   background-size: cover;
   background-position: center;
@@ -103,7 +103,7 @@ body::before {
 .menu-btn.x { color: #a5b4fc; }
 .menu-btn.o { color: #7dd3fc; }
 
-/* ---------- Игровой контейнер ---------- */
+/* ---------- Игровой контейнер (десктоп) ---------- */
 .game-wrapper {
   position: relative;
   z-index: 1;
@@ -117,7 +117,7 @@ body::before {
   max-height: 600px;
 }
 
-/* ---------- Боковые счета ---------- */
+/* ---------- Боковые счета (десктоп) ---------- */
 .side-score {
   display: flex;
   flex-direction: column;
@@ -187,7 +187,7 @@ body::before {
   animation: shake 0.6s ease-in-out 2, lightning 0.6s ease-in-out 2;
 }
 
-/* ---------- Игровой блок ---------- */
+/* ---------- Игровой блок (десктоп) ---------- */
 .game-container {
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(12px);
@@ -271,12 +271,11 @@ h1 span {
   aspect-ratio: 1 / 1;
   width: 100%;
   max-width: 400px;
-  max-height: 50vh; /* ограничение по высоте */
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 28px;
   padding: clamp(6px, 1.5vw, 14px);
-  flex-shrink: 1; /* позволяет сжиматься при нехватке места */
+  flex-shrink: 0;
 }
 .cell {
   background: #1e293b;
@@ -320,7 +319,7 @@ h1 span {
   justify-content: center;
   align-items: center;
   margin: 8px 0 6px;
-  flex-shrink: 0; /* не сжимается */
+  flex-shrink: 0;
 }
 .level-group {
   display: flex;
@@ -418,170 +417,142 @@ h1 span {
   flex-shrink: 0;
 }
 
-/* ---------- Адаптивность для телефонов ---------- */
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (полный пересмотр) ---------- */
 @media (max-width: 650px) {
+  body {
+    padding: 4px;
+    align-items: stretch; /* чтобы контейнер растягивался на всю высоту */
+  }
   .game-wrapper {
     flex-direction: column;
     gap: 4px;
     max-height: none;
-    justify-content: center;
-    height: 100%;
+    height: 100vh; /* занимаем весь экран */
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start; /* элементы прижаты к верху, но мы распределим через flex */
+    align-items: stretch;
   }
+
+  /* Верхняя панель счета */
   .side-score {
     flex-direction: row;
-    gap: 8px;
+    gap: 6px;
     min-width: unset;
     width: 100%;
-    max-width: 400px;
-    padding: 4px 12px;
+    padding: 4px 10px;
     justify-content: center;
     border-radius: 40px;
     background: rgba(0,0,0,0.3);
     border: none;
     backdrop-filter: blur(4px);
     flex-shrink: 0;
+    flex-grow: 0;
+    margin-bottom: 2px;
   }
   .side-score .score-number {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-top: 0;
   }
   .side-score .avatar-img {
-    width: 1.8rem;
+    width: 1.6rem;
   }
   .side-score .symbol {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-  .side-score .label { display: none; }
+  .side-score .label {
+    display: none;
+  }
 
+  /* Центральный блок занимает всё оставшееся место */
   .game-container {
-    max-width: 400px;
-    padding: 8px 12px 12px;
-    flex-shrink: 0;
-    width: 100%;
-  }
-
-  .board {
-    max-height: 45vh; /* уменьшаем, чтобы оставить место снизу */
-    flex-shrink: 1;
-  }
-
-  .status-panel {
-    min-height: 36px;
-    padding: 4px 12px;
-    margin: 4px 0 6px;
-  }
-  .status {
-    font-size: 0.85rem;
-  }
-
-  .controls {
-    gap: 4px;
-    margin: 4px 0;
-  }
-  .level-group {
-    padding: 2px 6px;
-  }
-  .level-group label {
-    font-size: 0.7rem;
-    padding: 3px 8px;
-  }
-  .btn {
-    font-size: 0.75rem;
-    padding: 4px 14px;
-  }
-  .reset-btn {
-    padding: 6px 16px;
-    font-size: 0.8rem;
-  }
-  .change-side-btn {
-    font-size: 0.65rem;
-    padding: 4px 14px;
-  }
-  .footer {
-    font-size: 0.6rem;
-    margin-top: 2px;
-  }
-  h1 {
-    font-size: 1.1rem;
-    margin-bottom: 0;
-  }
-  .extra-controls {
-    margin: 0;
-  }
-}
-
-/* Очень маленькие экраны (ширина ≤ 400px или высота ≤ 650px) */
-@media (max-width: 400px), (max-height: 650px) {
-  body { padding: 4px; }
-  .game-container {
-    padding: 4px 6px 8px;
+    max-width: 100%;
+    padding: 6px 8px 8px;
     border-radius: 24px;
+    flex: 1 1 auto; /* растягивается */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* распределяем вертикально */
+    min-height: 0; /* разрешаем сжатие */
   }
-  .board {
-    gap: 4px;
-    padding: 4px;
-    max-height: 35vh; /* ещё меньше */
-    border-radius: 16px;
+
+  h1 {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
-  .cell {
-    font-size: 1.8rem;
-    border-radius: 10px;
-  }
+
   .status-panel {
-    min-height: 24px;
-    padding: 2px 8px;
+    min-height: 28px;
+    padding: 2px 10px;
     margin: 2px 0 4px;
+    flex-shrink: 0;
   }
   .status {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
   .status.result-win,
   .status.result-lose,
   .status.result-draw {
     font-size: 0.9rem;
   }
-  .side-score .symbol {
-    font-size: 0.9rem;
+
+  /* Игровое поле — занимает максимум 55% высоты контейнера, но не более */
+  .board {
+    max-height: 55vh; /* ограничение, чтобы оставить место кнопкам */
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 1; /* позволяет сжиматься */
+    flex-grow: 0;   /* не растягивается */
+    padding: 4px;
+    gap: 4px;
+    border-radius: 16px;
+    margin: 0 auto;
   }
-  .side-score .score-number {
-    font-size: 0.9rem;
+  .cell {
+    font-size: 1.8rem;
+    border-radius: 10px;
   }
-  .side-score .avatar-img {
-    width: 1.4rem;
-  }
+
+  /* Блок управления — фиксированная высота */
   .controls {
-    gap: 2px;
-    margin: 2px 0;
+    gap: 4px;
+    margin: 4px 0 2px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .level-group {
-    padding: 2px 4px;
-  }
-  .level-group label {
-    font-size: 0.55rem;
     padding: 2px 6px;
   }
-  .btn {
-    font-size: 0.55rem;
+  .level-group label {
+    font-size: 0.6rem;
     padding: 2px 8px;
+  }
+  .btn {
+    font-size: 0.65rem;
+    padding: 4px 12px;
   }
   .reset-btn {
-    padding: 4px 10px;
-    font-size: 0.6rem;
-  }
-  .change-side-btn {
-    font-size: 0.5rem;
-    padding: 2px 8px;
-  }
-  .footer {
-    font-size: 0.5rem;
-    margin-top: 0;
-  }
-  h1 {
-    font-size: 0.9rem;
+    padding: 4px 12px;
+    font-size: 0.7rem;
   }
   .extra-controls {
     margin: 0;
+    flex-shrink: 0;
   }
+  .change-side-btn {
+    font-size: 0.55rem;
+    padding: 3px 12px;
+  }
+  .footer {
+    font-size: 0.5rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Меню на мобильных */
   .menu-box {
     padding: 20px 16px;
     border-radius: 40px;
@@ -595,5 +566,40 @@ h1 span {
     height: 64px;
     font-size: 1.8rem;
     border-radius: 20px;
+  }
+}
+
+/* Совсем маленькие экраны (высота < 600px) */
+@media (max-height: 600px) and (max-width: 650px) {
+  .board {
+    max-height: 45vh;
+  }
+  .cell {
+    font-size: 1.4rem;
+  }
+  .status-panel {
+    min-height: 22px;
+  }
+  .status {
+    font-size: 0.65rem;
+  }
+  .controls {
+    gap: 2px;
+    margin: 2px 0;
+  }
+  .level-group label {
+    font-size: 0.5rem;
+    padding: 1px 6px;
+  }
+  .btn {
+    font-size: 0.55rem;
+    padding: 2px 8px;
+  }
+  .reset-btn {
+    padding: 3px 10px;
+    font-size: 0.6rem;
+  }
+  .footer {
+    font-size: 0.45rem;
   }
 }
