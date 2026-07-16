@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Крестики-нолики</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Меню выбора стороны -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-box">
+      <h2>Выбери сторону</h2>
+      <div class="menu-buttons">
+        <button class="menu-btn x" data-side="X">✖</button>
+        <button class="menu-btn o" data-side="O">◯</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Основная игра -->
+  <div class="game-wrapper">
+    <!-- Левый блок: игрок -->
+    <div class="side-score human" id="humanSide">
+      <img src="photo/2.png" class="avatar-img" id="playerAvatar" alt="Игрок" />
+      <span class="label">Вы</span>
+      <span class="symbol" id="humanSymbolDisplay">X</span>
+      <span class="score-number" id="humanScoreSide">0</span>
+    </div>
+
+    <!-- Центр: игровое поле -->
+    <div class="game-container">
+      <h1><span>✖</span> Крестики-Нолики <span>◯</span></h1>
+
+      <div class="status-panel">
+        <div class="status" id="status">Выберите сторону в меню</div>
+      </div>
+
+      <div class="board" id="board"></div>
+
+      <div class="controls">
+        <div class="level-group">
+          <input type="radio" name="level" id="easy" value="easy" checked />
+          <label for="easy">🟢 Лёгкий</label>
+          <input type="radio" name="level" id="medium" value="medium" />
+          <label for="medium">🟡 Средний</label>
+          <input type="radio" name="level" id="hard" value="hard" />
+          <label for="hard">🔴 Сложный</label>
+        </div>
+        <button class="btn reset-btn" id="resetBtn">Новая игра</button>
+      </div>
+
+      <div class="extra-controls">
+        <button class="change-side-btn" id="changeSideBtn">Сменить сторону</button>
+      </div>
+
+      <div class="footer">Ты играешь за <strong id="footerSymbol">X</strong> · ходи первым</div>
+    </div>
+
+    <!-- Правый блок: бот -->
+    <div class="side-score bot" id="botSide">
+      <img src="photo/3.png" class="avatar-img" id="botAvatar" alt="Бот" />
+      <span class="label">Бот</span>
+      <span class="symbol" id="botSymbolDisplay">O</span>
+      <span class="score-number" id="botScoreSide">0</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
