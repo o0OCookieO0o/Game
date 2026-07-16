@@ -271,6 +271,7 @@ h1 span {
   aspect-ratio: 1 / 1;
   width: 100%;
   max-width: 400px;
+  max-height: 55vh;         /* ← новое ограничение по высоте */
   margin: 0 auto;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 28px;
@@ -421,17 +422,17 @@ h1 span {
 @media (max-width: 650px) {
   .game-wrapper {
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     max-height: none;
     justify-content: center;
   }
   .side-score {
     flex-direction: row;
-    gap: 12px;
+    gap: 8px;
     min-width: unset;
     width: 100%;
     max-width: 400px;
-    padding: 6px 16px;
+    padding: 4px 12px;
     justify-content: center;
     border-radius: 40px;
     background: rgba(0,0,0,0.3);
@@ -439,7 +440,7 @@ h1 span {
     backdrop-filter: blur(4px);
   }
   .side-score .score-number {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin-top: 0;
   }
   .side-score .avatar-img {
@@ -451,23 +452,110 @@ h1 span {
   .side-score .label { display: none; }
   .game-container {
     max-width: 400px;
-    padding: 12px 16px 16px;
+    padding: 8px 12px 12px;
+  }
+  .board {
+    max-height: 45vh; /* дополнительно уменьшаем на узких экранах */
   }
   body { padding: 6px; }
   .menu-box { padding: 30px 20px; }
   .menu-btn { width: 80px; height: 80px; font-size: 2.2rem; }
-  .status-panel { min-height: 44px; }
-}
-
-@media (max-width: 480px) {
-  .board { gap: 6px; padding: 6px; }
-  .cell { border-radius: 12px; }
-  .status-panel { padding: 4px 12px; min-height: 40px; }
+  .status-panel { min-height: 40px; padding: 4px 12px; }
+  .status { font-size: 0.9rem; }
   .controls { gap: 4px; }
   .level-group { padding: 4px 6px; }
-  .level-group label { padding: 3px 8px; }
-  .btn { padding: 4px 14px; }
-  .reset-btn { padding: 8px 20px; }
-  .change-side-btn { padding: 4px 16px; font-size: 0.7rem; }
+  .level-group label { font-size: 0.7rem; padding: 3px 8px; }
+  .btn { font-size: 0.7rem; padding: 4px 14px; }
+  .reset-btn { padding: 8px 20px; font-size: 0.8rem; }
+  .change-side-btn { font-size: 0.65rem; padding: 4px 16px; }
   .extra-controls { margin: 2px 0; }
+}
+
+/* Для очень маленьких экранов (ширина ≤ 400px или высота ≤ 650px) */
+@media (max-width: 400px), (max-height: 650px) {
+  body { padding: 4px; }
+  .game-container {
+    padding: 6px 8px 8px;
+    border-radius: 24px;
+  }
+  .board {
+    gap: 4px;
+    padding: 4px;
+    max-height: 40vh;
+    border-radius: 16px;
+  }
+  .cell {
+    font-size: 2rem;
+    border-radius: 10px;
+  }
+  .status-panel {
+    min-height: 28px;
+    padding: 4px 8px;
+    margin: 4px 0 6px;
+  }
+  .status {
+    font-size: 0.75rem;
+  }
+  .status.result-win,
+  .status.result-lose,
+  .status.result-draw {
+    font-size: 1rem;
+  }
+  .side-score .symbol {
+    font-size: 1rem;
+  }
+  .side-score .score-number {
+    font-size: 1rem;
+  }
+  .side-score .avatar-img {
+    width: 1.6rem;
+  }
+  .controls {
+    gap: 3px;
+    margin: 4px 0;
+  }
+  .level-group {
+    padding: 2px 4px;
+  }
+  .level-group label {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+  .btn {
+    font-size: 0.6rem;
+    padding: 3px 10px;
+  }
+  .reset-btn {
+    padding: 4px 12px;
+    font-size: 0.7rem;
+  }
+  .change-side-btn {
+    font-size: 0.55rem;
+    padding: 3px 10px;
+  }
+  .footer {
+    font-size: 0.5rem;
+    margin-top: 2px;
+  }
+  h1 {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+  .extra-controls {
+    margin: 0;
+  }
+  .menu-box {
+    padding: 20px 16px;
+    border-radius: 40px;
+  }
+  .menu-box h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .menu-btn {
+    width: 64px;
+    height: 64px;
+    font-size: 1.8rem;
+    border-radius: 20px;
+  }
 }
