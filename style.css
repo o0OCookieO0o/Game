@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 12px;
   background-image: url('photo/1.jpg');
   background-size: cover;
   background-position: center;
@@ -417,21 +417,23 @@ h1 span {
   flex-shrink: 0;
 }
 
-/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (полный пересмотр) ---------- */
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ с центрированием ---------- */
 @media (max-width: 650px) {
   body {
-    padding: 4px;
-    align-items: stretch; /* чтобы контейнер растягивался на всю высоту */
+    padding: 12px 6px; /* небольшие отступы сверху/снизу */
+    align-items: center; /* центрируем по вертикали */
   }
   .game-wrapper {
     flex-direction: column;
     gap: 4px;
     max-height: none;
-    height: 100vh; /* занимаем весь экран */
+    height: auto; /* не фиксируем высоту, чтобы контент центрировался */
     width: 100%;
     max-width: 100%;
-    justify-content: flex-start; /* элементы прижаты к верху, но мы распределим через flex */
+    justify-content: center; /* центрируем по вертикали */
     align-items: stretch;
+    min-height: 0; /* разрешаем сжатие, но центрирование сработает за счёт body */
+    margin: auto; /* дополнительное центрирование */
   }
 
   /* Верхняя панель счета */
@@ -464,16 +466,17 @@ h1 span {
     display: none;
   }
 
-  /* Центральный блок занимает всё оставшееся место */
+  /* Центральный блок */
   .game-container {
     max-width: 100%;
     padding: 6px 8px 8px;
     border-radius: 24px;
-    flex: 1 1 auto; /* растягивается */
+    flex: 0 1 auto; /* не растягивается, но может сжиматься */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* распределяем вертикально */
-    min-height: 0; /* разрешаем сжатие */
+    justify-content: center; /* центрируем содержимое по вертикали внутри */
+    min-height: 0;
+    width: 100%;
   }
 
   h1 {
@@ -497,14 +500,14 @@ h1 span {
     font-size: 0.9rem;
   }
 
-  /* Игровое поле — занимает максимум 55% высоты контейнера, но не более */
+  /* Игровое поле */
   .board {
-    max-height: 55vh; /* ограничение, чтобы оставить место кнопкам */
+    max-height: 55vh;
     width: 100%;
     max-width: 100%;
     aspect-ratio: 1 / 1;
-    flex-shrink: 1; /* позволяет сжиматься */
-    flex-grow: 0;   /* не растягивается */
+    flex-shrink: 1;
+    flex-grow: 0;
     padding: 4px;
     gap: 4px;
     border-radius: 16px;
@@ -515,7 +518,7 @@ h1 span {
     border-radius: 10px;
   }
 
-  /* Блок управления — фиксированная высота */
+  /* Блок управления */
   .controls {
     gap: 4px;
     margin: 4px 0 2px;
@@ -571,6 +574,9 @@ h1 span {
 
 /* Совсем маленькие экраны (высота < 600px) */
 @media (max-height: 600px) and (max-width: 650px) {
+  body {
+    padding: 6px 4px;
+  }
   .board {
     max-height: 45vh;
   }
