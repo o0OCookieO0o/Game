@@ -417,7 +417,7 @@ h1 span {
   flex-shrink: 0;
 }
 
-/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (скорректированные отступы) ---------- */
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (увеличен отступ сверху) ---------- */
 @media (max-width: 650px) {
   body {
     padding: 4px;
@@ -437,7 +437,6 @@ h1 span {
     box-sizing: border-box;
   }
 
-  /* Верхняя панель счета — теперь отступ сверху 6vh */
   .side-score {
     flex-direction: row;
     gap: 6px;
@@ -452,7 +451,7 @@ h1 span {
     backdrop-filter: blur(4px);
     flex-shrink: 0;
     flex-grow: 0;
-    margin-top: 6vh;            /* увеличенный отступ сверху */
+    margin-top: 6vh;            /* отступ сверху для счёта */
     margin-bottom: 1vh;
   }
   .side-score .score-number {
@@ -469,7 +468,7 @@ h1 span {
     display: none;
   }
 
-  /* Игровое окошко — нижний отступ уменьшен до 20vh */
+  /* Игровое окошко — увеличен отступ сверху до 21vh */
   .game-container {
     max-width: 400px;
     width: 100%;
@@ -477,8 +476,8 @@ h1 span {
     border-radius: 24px;
     flex-shrink: 0;
     flex-grow: 0;
-    margin-top: 1vh;
-    margin-bottom: 20vh;        /* уменьшенный нижний отступ (было 25vh) */
+    margin-top: 21vh;           /* увеличенный отступ сверху (было 1vh) */
+    margin-bottom: 20vh;        /* нижний отступ оставлен */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -573,15 +572,15 @@ h1 span {
   }
 }
 
-/* Совсем маленькие экраны (высота < 600px) — корректируем отступы */
+/* Совсем маленькие экраны — пропорциональное уменьшение отступов */
 @media (max-height: 600px) and (max-width: 650px) {
-  .game-container {
-    margin-bottom: 12vh;        /* на низких экранах ещё меньше */
-    margin-top: 0.5vh;
-  }
   .side-score {
     margin-top: 3vh;
     margin-bottom: 0.5vh;
+  }
+  .game-container {
+    margin-top: 14vh;           /* уменьшенный верхний отступ для маленьких экранов */
+    margin-bottom: 12vh;
   }
   .board {
     max-height: 40vh;
