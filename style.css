@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 8px;
   background-image: url('photo/1.jpg');
   background-size: cover;
   background-position: center;
@@ -417,23 +417,24 @@ h1 span {
   flex-shrink: 0;
 }
 
-/* ---------- МОБИЛЬНАЯ ВЕРСИЯ с центрированием ---------- */
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (отцентрирована с отступами) ---------- */
 @media (max-width: 650px) {
   body {
-    padding: 12px 6px; /* небольшие отступы сверху/снизу */
-    align-items: center; /* центрируем по вертикали */
+    padding: 4px;
+    align-items: stretch;
   }
+
   .game-wrapper {
     flex-direction: column;
     gap: 4px;
     max-height: none;
-    height: auto; /* не фиксируем высоту, чтобы контент центрировался */
+    height: 100vh;
     width: 100%;
     max-width: 100%;
-    justify-content: center; /* центрируем по вертикали */
-    align-items: stretch;
-    min-height: 0; /* разрешаем сжатие, но центрирование сработает за счёт body */
-    margin: auto; /* дополнительное центрирование */
+    justify-content: center;          /* центрируем по вертикали */
+    align-items: center;
+    padding: 3vh 0 28vh 0;           /* сверху 3% высоты экрана, снизу 28% */
+    box-sizing: border-box;
   }
 
   /* Верхняя панель счета */
@@ -442,6 +443,7 @@ h1 span {
     gap: 6px;
     min-width: unset;
     width: 100%;
+    max-width: 400px;
     padding: 4px 10px;
     justify-content: center;
     border-radius: 40px;
@@ -466,17 +468,15 @@ h1 span {
     display: none;
   }
 
-  /* Центральный блок */
   .game-container {
-    max-width: 100%;
+    max-width: 400px;
+    width: 100%;
     padding: 6px 8px 8px;
     border-radius: 24px;
-    flex: 0 1 auto; /* не растягивается, но может сжиматься */
+    flex: 0 0 auto;              /* не растягивается */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* центрируем содержимое по вертикали внутри */
-    min-height: 0;
-    width: 100%;
+    justify-content: center;
   }
 
   h1 {
@@ -500,11 +500,9 @@ h1 span {
     font-size: 0.9rem;
   }
 
-  /* Игровое поле */
   .board {
-    max-height: 55vh;
+    max-height: 50vh;
     width: 100%;
-    max-width: 100%;
     aspect-ratio: 1 / 1;
     flex-shrink: 1;
     flex-grow: 0;
@@ -518,7 +516,6 @@ h1 span {
     border-radius: 10px;
   }
 
-  /* Блок управления */
   .controls {
     gap: 4px;
     margin: 4px 0 2px;
@@ -555,7 +552,6 @@ h1 span {
     flex-shrink: 0;
   }
 
-  /* Меню на мобильных */
   .menu-box {
     padding: 20px 16px;
     border-radius: 40px;
@@ -574,11 +570,11 @@ h1 span {
 
 /* Совсем маленькие экраны (высота < 600px) */
 @media (max-height: 600px) and (max-width: 650px) {
-  body {
-    padding: 6px 4px;
+  .game-wrapper {
+    padding: 2vh 0 20vh 0;
   }
   .board {
-    max-height: 45vh;
+    max-height: 40vh;
   }
   .cell {
     font-size: 1.4rem;
